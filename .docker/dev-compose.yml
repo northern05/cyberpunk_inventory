@@ -25,5 +25,5 @@ services:
 
 
 networks:
-  dev.21.:
+  dev:
     external: true

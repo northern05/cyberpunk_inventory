@@ -11,7 +11,7 @@ from fastapi_pagination import Page
 router = APIRouter(tags=["Items"])
 
 
-@router.get("/", response_model=Page[Item])
+@router.get("", response_model=Page[Item])
 async def get_items(
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
         # authorized: bool = Depends(verify_token)
@@ -20,7 +20,7 @@ async def get_items(
 
 
 @router.post(
-    "/",
+    "",
     response_model=Item,
     status_code=status.HTTP_201_CREATED,
 )
@@ -39,7 +39,7 @@ async def get_item(
 ):
     return item
 
-@router.put("/{item_id}/")
+@router.put("/{item_id}")
 async def update_item(
     item_update: ItemUpdate,
     item: Item = Depends(item_by_id),
@@ -52,7 +52,7 @@ async def update_item(
     )
 
 
-@router.delete("/{item_id}/", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_item(
         item: Item = Depends(item_by_id),
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),

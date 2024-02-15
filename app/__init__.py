@@ -13,5 +13,5 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
-add_pagination(app)
 app.include_router(router=router_v1, prefix=config.api_v1_prefix)
+add_pagination(app)
