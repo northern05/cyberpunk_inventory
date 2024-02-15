@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14.8
+    environment:
+      POSTGRES_DB: "cyberpunk_inventory"
+      POSTGRES_USER: "johnny_silverhand"
+      POSTGRES_PASSWORD: "samurai"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    container_name:
+      postgres
+    ports:
+      - "5432:5432"
+    networks:
+      dev:
+        ipv4_address: 172.31.0.2
+    volumes:
+      - /srv/psql:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U xnl_service -d dev" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+
+networks:
+  dev:
+    external: true

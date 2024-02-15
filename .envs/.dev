@@ -1,0 +1,13 @@
+LISTEN_PORT=5000
+ENV=dev
+
+DB_NAME=billing
+DB_USER=acre_service
+DB_HOST=172.21.0.2
+DB_PORT=5432
+DB_PW=70ff71feab1e437b0b4212162d40ddfc2a02aa1c7e089aae398f6ece75d0124e
+
+JWT_SECRET_KEY=xnl-hrani-gospodi
+BASE_URL=https://liquid-acre.zpoken.dev
+
+API_KEY=0c95c7ece1ce1a9750275ef1c6d7ad6b278f70d66592207783ffe7d58474cc01

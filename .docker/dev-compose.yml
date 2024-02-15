@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  cyberpunk_inventory:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    env_file:
+      - ../.envs/.dev
+    image:
+      cyberpunk_inventory
+    container_name:
+      cyberpunk_inventory
+    ports:
+      - "6010:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      dev:
+        ipv4_address: 172.31.0.1
+    volumes:
+      - ../:/usr/src/app
+    restart: always
+    command: bash -c 'uvicorn main:app --host 0.0.0.0'
+
+
+networks:
+  dev.21.:
+    external: true
