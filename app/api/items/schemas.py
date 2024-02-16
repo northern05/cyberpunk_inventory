@@ -1,6 +1,8 @@
-from pydantic import BaseModel, ConfigDict
 import datetime
+
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
+
 from app.core.models.item import ItemCategory
 
 class ItemBase(BaseModel):

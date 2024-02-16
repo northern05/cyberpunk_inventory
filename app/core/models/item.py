@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import func, dialects
+from sqlalchemy import func
 import enum
 
 from .base import Base

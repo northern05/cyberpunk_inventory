@@ -1,10 +1,11 @@
 from typing import Annotated
+
 from fastapi import Path, Depends, HTTPException, status, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.models import db_helper, Item
 from . import crud
-from app.core.config import config
+from app.core.models import db_helper
+from app.core.models import Item
 
 
 async def item_by_id(
@@ -19,12 +20,3 @@ async def item_by_id(
         status_code=status.HTTP_404_NOT_FOUND,
         detail=f"Item {item_id} not found!",
     )
-
-
-async def verify_token(req: Request):
-    token = req.headers.get("Authorization")
-    if token != config.API_KEY:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Wrong API key"
-        )

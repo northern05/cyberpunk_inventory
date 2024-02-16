@@ -1,16 +1,13 @@
 from sqlalchemy import select
-from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.models import Item
-from app import exceptions
 from fastapi_pagination.ext.sqlalchemy import paginate
 from fastapi_pagination import Page
 
 from .schemas import ItemUpdate, ItemCreate
+from app.core.models import Item
 
 
 async def get_items(session: AsyncSession) -> Page[Item]:
-
     stmt = select(Item).order_by(Item.created_at.desc())
     result = await paginate(session, stmt)
     return result
