@@ -5,7 +5,7 @@ from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import func
 
-from base import Base
+from .base import Base
 
 
 class Permission(enum.Enum):

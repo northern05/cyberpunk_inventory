@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi_pagination import add_pagination
-from auth.base_config import auth_backend, fastapi_users
-from auth.schemas import UserRead, UserCreate
+from app.api.auth.base_config import auth_backend, fastapi_users
+from app.api.auth.schemas import UserRead, UserCreate
 
 from app.core.models import db_helper, Base
 from app.api import router as router_v1
