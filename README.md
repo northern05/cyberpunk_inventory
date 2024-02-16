@@ -11,7 +11,7 @@ docker network create dev --subnet=172.31.0.0/16
 ```bash
 sh deploy.sh
 ```
-5. Open http://127.0.0.1:6016/docs# - docs endpoint
+5. Open http://127.0.0.1:6010/docs# - docs endpoint
 
 
 ## API
