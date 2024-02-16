@@ -12,8 +12,8 @@ class ItemCategory(enum.Enum):
     Cybernetic = "Cybernetic"
     Gadget = "Gadget"
 
-class Item(Base):
 
+class Item(Base):
     name: Mapped[str] = mapped_column(server_default='0', unique=True)
     description: Mapped[str] = mapped_column(server_default='0')
     category: Mapped[ItemCategory] = mapped_column(nullable=False)
