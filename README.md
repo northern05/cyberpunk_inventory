@@ -20,9 +20,17 @@ sh deploy.sh
 
 **items/views.py** - CRUD endpoints for Items.
 
-**items/schemas.py** - Schemas for CRUD Items.
+**items/schemas.py** - schemas for CRUD Items.
 
 **items/crud.py** - service to interact with Item. 
+
+### Authorization and registration endpoints
+
+**auth/views.py** - registration user and login using jwt.
+
+**auth/schemas.py** - schemas for registration and authentication users.
+
+**auth/helpers.py** - services for registration and authentication users.
 
 ### Core
 

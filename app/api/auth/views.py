@@ -18,6 +18,14 @@ async def login(
         form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
         session: AsyncSession = Depends(db_helper.scoped_session_dependency)
 ):
+    """
+    Login Endpoint
+    ---
+    description: Authenticate user and generate access token.
+    responses:
+        200:
+            description: Successful login. Returns access token.
+    """
     user = await helpers.authenticate_user(
         username=form_data.username,
         password=form_data.password,
@@ -37,6 +45,14 @@ async def register(
         user_data: UserCreate,
         session: AsyncSession = Depends(db_helper.scoped_session_dependency)
 ):
+    """
+    Registration Endpoint
+    ---
+    description: Register a new user.
+    responses:
+        200:
+            description: Successful registration. Returns status "ok".
+    """
     reg_user = await helpers.registrate_user(
         user_data=user_data,
         session=session
