@@ -13,7 +13,7 @@ from app.core.config import config
 router_token = APIRouter(tags=["Users"])
 
 
-@router_token.post("/token")
+@router_token.post("/login")
 async def login(
         form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
         session: AsyncSession = Depends(db_helper.scoped_session_dependency)
