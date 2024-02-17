@@ -5,6 +5,7 @@ from typing import Optional
 
 from app.core.models.item import ItemCategory
 
+
 class ItemBase(BaseModel):
     name: str
     description: str
@@ -35,3 +36,9 @@ class Item(ItemBase):
     quantity: int
     price: float
     created_at: datetime.datetime
+
+
+class UserRead(BaseModel):
+    email: str
+    username: str
+    permission: str

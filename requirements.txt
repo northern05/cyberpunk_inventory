@@ -22,3 +22,5 @@ fastapi_users
 fastapi_users_db_sqlalchemy
 uvicorn
 bcrypt==4.0.1
+python-jose[cryptography]
+passlib[bcrypt]

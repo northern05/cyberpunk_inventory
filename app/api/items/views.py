@@ -1,19 +1,26 @@
+from typing import Annotated
+
 from fastapi import APIRouter, status, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_pagination import Page
 
 from . import crud
 from .dependencies import item_by_id
-from .schemas import Item, ItemCreate, ItemUpdate
+from .schemas import Item, ItemCreate, ItemUpdate, UserRead
 from app.core.models import db_helper
+from app.api.auth.helpers import get_current_user
+from app import exceptions
 
 router = APIRouter(tags=["Items"])
 
 
 @router.get("", response_model=Page[Item])
 async def get_items(
+        current_user: Annotated[UserRead, Depends(get_current_user)],
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
+    if current_user.permission.value not in ("read_only", "full_access"):
+        raise exceptions.Unauthorized(detail="You don't have permissions!")
     return await crud.get_items(session=session)
 
 
@@ -24,24 +31,33 @@ async def get_items(
 )
 async def create_item(
         item_in: ItemCreate,
+        current_user: Annotated[UserRead, Depends(get_current_user)],
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
+    if current_user.permission.value != "full_access":
+        raise exceptions.Unauthorized(detail="You don't have permissions!")
     return await crud.create_item(session=session, item_in=item_in)
 
 
 @router.get("/{item_id}", response_model=Item)
 async def get_item(
+        current_user: Annotated[UserRead, Depends(get_current_user)],
         item: Item = Depends(item_by_id),
 ):
+    if current_user.permission.value not in ("read_only", "full_access"):
+        raise exceptions.Unauthorized(detail="You don't have permissions!")
     return item
 
 
 @router.put("/{item_id}")
 async def update_item(
+        current_user: Annotated[UserRead, Depends(get_current_user)],
         item_update: ItemUpdate,
         item: Item = Depends(item_by_id),
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
+    if current_user.permission.value != "full_access":
+        raise exceptions.Unauthorized(detail="You don't have permissions!")
     return await crud.update_item(
         session=session,
         item=item,
@@ -51,7 +67,10 @@ async def update_item(
 
 @router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_item(
+        current_user: Annotated[UserRead, Depends(get_current_user)],
         item: Item = Depends(item_by_id),
         session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ) -> None:
+    if current_user.permission.value != "full_access":
+        raise exceptions.Unauthorized(detail="You don't have permissions!")
     await crud.delete_item(session=session, item=item)
