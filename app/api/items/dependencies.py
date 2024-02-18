@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from . import crud
 from app.core.models import db_helper
 from app.core.models import Item
+from app import exceptions
 
 
 async def item_by_id(
@@ -39,7 +40,6 @@ async def item_by_id(
     if item is not None:
         return item
 
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
-        detail=f"Item {item_id} not found!",
+    raise exceptions.ContentNotFound(
+        detail=f"Item {item_id} not found!"
     )
