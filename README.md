@@ -1,18 +1,34 @@
+# Description
+
+**cyberpunk_inventory** application developed for CRUD operations on different cyberpunk inventory.
+Only authorised users can perform CRUD operations on items. User have to register to be authorized.
+
+##Application stack:<br />
+**FastAPI**<br />
+**SQLAlchemy**<br />
+**PostgreSQL**<br />
+**Pydentic**<br />
+**python-jose[cryptography]**
+
 # Setup and run
+
 Repo https://github.com/northern05/cyberpunk_inventory.git
 
 1. Clone project from **Repo**
 2. Install Docker: https://docs.docker.com/engine/install/ubuntu/
-3. Create docker subnet: 
+3. Create docker subnet:
+
 ```bash
 docker network create dev --subnet=172.31.0.0/16
 ```
-4. Run sh script from repo "deploy.sh": 
+
+4. Run sh script from repo "deploy.sh":
+
 ```bash
 sh deploy.sh
 ```
-5. Open http://127.0.0.1:6010/docs# - docs endpoint
 
+5. Open http://127.0.0.1:6010/docs# - docs endpoint
 
 ## API
 
@@ -22,7 +38,7 @@ sh deploy.sh
 
 **items/schemas.py** - schemas for CRUD Items.
 
-**items/crud.py** - service to interact with Item. 
+**items/crud.py** - service to interact with Item.
 
 ### Authorization and registration endpoints
 
