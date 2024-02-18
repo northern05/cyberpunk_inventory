@@ -24,3 +24,5 @@ python-jose[cryptography]
 passlib[bcrypt]
 pytest
 faker
+urllib3
+python-multipart
