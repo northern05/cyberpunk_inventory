@@ -3,7 +3,7 @@ ENV=dev
 
 DB_NAME=cyberpunk_inventory
 DB_USER=johnny_silverhand
-DB_HOST=172.32.0.2
+DB_HOST=172.31.0.2
 DB_PORT=5432
 DB_PW=samurai
 
