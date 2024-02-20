@@ -3,7 +3,7 @@
 **cyberpunk_inventory** application developed for CRUD operations on different cyberpunk inventory.
 Only authorised users can perform CRUD operations on items. User have to register to be authorized.
 
-##Application stack:<br />
+## Application stack:<br />
 **FastAPI**<br />
 **SQLAlchemy**<br />
 **PostgreSQL**<br />
